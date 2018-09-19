@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>Favorites Authors</h1>
+  <a class="btn btn-primary btn-sm" [routerLink]="['/']">Home</a>
+  <form (submit)="createAuthor()">
+    <p>Add a new author:</p>
+    <div class="form-group">
+      <span class="text-success" *ngIf="messages.success">{{ messages.success }}</span>
+      <span class="text-danger" *ngIf="messages.author">{{ messages.author }}</span>
+      <input type="text" class="form-control" [(ngModel)]="newAuthor.author" name="newAuthor.author" placeholder="Author Name">
+    </div>
+    <a class="btn btn-danger btn-sm" [routerLink]="['/']">Cancel</a>
+    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+  </form>
+</div>

@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+form {
+    width: 280px;
+    height: 200px;
+    margin: auto;
+    text-align: center;
+    padding: 25px;
+    margin-top: 10px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    background-color: #dff9fb;
+}
+form a, form button{
+    margin: 0px 10px;
+}
