@@ -2,21 +2,26 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { AuthorService } from './author.service';
+import { ProductService } from './product.service';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthorsComponent } from './components/authors/authors.component';
+import { PageNotFoundComponentComponent } from './components/page-not-found-component/page-not-found-component.component';
+import { ProductsComponent } from './components/products/products.component';
+import { HomeComponent } from './components/home/home.component';
 import { NewComponent } from './components/new/new.component';
 import { EditComponent } from './components/edit/edit.component';
-import { PageNotFoundComponentComponent } from './components/page-not-found-component/page-not-found-component.component';
+import { ProductsHomeComponent } from './components/products-home/products-home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthorsComponent,
+    PageNotFoundComponentComponent,
+    ProductsComponent,
+    HomeComponent,
     NewComponent,
     EditComponent,
-    PageNotFoundComponentComponent
+    ProductsHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +29,7 @@ import { PageNotFoundComponentComponent } from './components/page-not-found-comp
     FormsModule,
     AppRoutingModule
   ],
-  providers: [AuthorService],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

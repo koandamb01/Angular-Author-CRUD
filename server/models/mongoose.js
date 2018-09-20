@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 // connect to the mongodb
-mongoose.connect('mongodb://localhost/authors');
+mongoose.connect('mongodb://localhost/products');
 const db = mongoose.connection;
 db.on('error', (error) => {
     console.log("error during connection: ", error);

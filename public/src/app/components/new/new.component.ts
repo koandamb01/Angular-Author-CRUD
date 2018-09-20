@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, Params } from '@angular/router';
-import { AuthorService } from '../../author.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProductService } from '..//../product.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -9,34 +9,38 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./new.component.css']
 })
 export class NewComponent implements OnInit {
+
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _authorService: AuthorService
+    private _productService: ProductService,
   ) { }
 
-  newAuthor: any;
+  // variables
+  newProduct: any;
   messages: any;
+
   ngOnInit() {
-    this.newAuthor = {}
-    this.messages = { author: "" };
+    this.newProduct = { title: "", price: "", imageUrl: "" };
+    this.messages = { success: "", title: "", price: "", imageUrl: "" };
   }
 
-  goHome() {
-    this._router.navigate(['/']);
+  goProducts() {
+    this._router.navigate(['/products']);
   }
-
-  createAuthor() {
-    let obs = this._authorService.create(this.newAuthor);
+  // Create a new Product
+  createProduct() {
+    let obs = this._productService.create(this.newProduct);
     obs.subscribe(response => {
+
       if (response['status'] == false) {
         this.messages = response['messages'];
       }
       else {
         this.messages = response['messages'];
         console.log(this.messages);
-        setTimeout(() => { this.goHome() }, 2000);
+        setTimeout(() => { this.goProducts() }, 2000);
       }
-    })
+    });
   }
 }

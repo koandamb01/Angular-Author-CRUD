@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthorService } from '../../author.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
 @Component({
@@ -10,7 +9,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 export class PageNotFoundComponentComponent implements OnInit {
 
   constructor(
-    private _authorService: AuthorService,
+    // private _authorService: ,
     private _route: ActivatedRoute,
     private _router: Router
   ) { }

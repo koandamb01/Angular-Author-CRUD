@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { AuthorService } from '../../author.service';
+import { ProductService } from '..//../product.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -13,55 +13,58 @@ export class EditComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _authorService: AuthorService,
+    private _productService: ProductService,
   ) { }
 
-  _id: any;
+  // variables
+  editProduct: any;
   messages: any;
-  editAuthor: any;
+  _id: any;
   ngOnInit() {
-    this.editAuthor = {}
-    this.messages = { author: "" };
-    this.getId();
-    this.getOneAuthor()
+    this.editProduct = { title: "", price: "", imageUrl: "" };
+    this.messages = { success: "", title: "", price: "", imageUrl: "" };
+    this.getID();
+    this.getOneProduct();
   }
 
-  goHome() {
-    this._router.navigate(['/']);
+  goProducts() {
+    this._router.navigate(['/products']);
   }
 
-  getId() {
+  getID() {
     this._route.params.subscribe((params: Params) => {
       this._id = params['id'];
     });
   }
 
-  getOneAuthor() {
-    let obs = this._authorService.getOneAuthor(this._id);
+  getOneProduct() {
+    let obs = this._productService.getOne(this._id);
     obs.subscribe(response => {
       if (response['status'] == false) {
+        console.log("response false: ", JSON.stringify(response));
         this.messages = "Something went while processing your request, Please reload the page!"
       }
-      else if (response['author'] == null) {
+      else if (response['product'] == null) {
+        console.log("response Null: ", JSON.stringify(response));
         this.messages = "Something went while processing your request, Please reload the page!"
       }
       else {
-        this.editAuthor = response['author'];
+        console.log("response true: ", JSON.stringify(response));
+        this.editProduct = response['product'];
       }
     });
   }
 
-  updateAuthor() {
-    let obs = this._authorService.update(this.editAuthor);
+  updateProduct() {
+    let obs = this._productService.update(this.editProduct);
     obs.subscribe(response => {
       if (response['status'] == false) {
         this.messages = response['messages'];
       }
       else {
         this.messages = response['messages'];
-        setTimeout(() => { this.goHome() }, 2000);
+        setTimeout(() => { this.goProducts() }, 2000);
       }
     });
   }
-
-} 
+}

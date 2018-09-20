@@ -1,23 +1,23 @@
 const Controllers = require('../controllers/controllers');
 
 module.exports = (app) => {
-    app.get('/authors', (req, res) => {
+    app.get('/all', (req, res) => {
         Controllers.all(req, res);
     });
 
-    app.get('/author/:id', (req, res) => {
+    app.get('/getOne/:id', (req, res) => {
         Controllers.getOne(req, res);
     });
 
-    app.post('/author', (req, res) => {
+    app.post('/create', (req, res) => {
         Controllers.create(req, res);
     });
 
-    app.put('/author/:id', (req, res) => {
+    app.put('/update/:id', (req, res) => {
         Controllers.update(req, res);
     });
 
-    app.delete('/author/:id', (req, res) => {
+    app.delete('/delete/:id', (req, res) => {
         Controllers.delete(req, res);
     });
 }
